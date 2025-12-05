@@ -1,5 +1,5 @@
 <?php
-Include("./UniversalGenerator.php");
+Include("./SilverSoft.RunCommand.UniversalGenerator.php");
 echo "SilverSoft.ValidateTest.UniversalGenerator";
 
 // Example CLI/demo usage (remove or comment when including in production)
