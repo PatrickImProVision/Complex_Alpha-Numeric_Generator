@@ -142,7 +142,7 @@ Insert This To Include LanguageChar Configuration:
 $CANG_LanguageCharFoundation = require __DIR__ . '/CANG_Config/CANG_LanguageCharFoundation.php';
 
 Then Load The LanguageDefinition:
-$CANG_LanguageDefinition = LanguageDefinition::BuildAll($CANG_LanguageCharFoundation['LanguageChar']);
+$CANG_LanguageDefinition = CANG_LanguageDefinition::BuildAll($CANG_LanguageCharFoundation['LanguageChar']);
 
 You Can Print The OutPut And Continue To Configure Your FrameWork:
 print_r($CANG_LanguageDefinition);
