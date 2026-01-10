@@ -1,148 +1,171 @@
 <?php
-function unique_key_generator($default_code_length=1,$default_code_type=1,$default_code=false,$code_random=true){
-//Sub funkce code_count(); zajistuje vypocet pozice klice jestly je 1. nebo 80. atp.
-function code_count($code_base,$array_chars) {
-        $characters = array_flip($array_chars);
-        $character_keys = $array_chars;
- 
-        $code_characters = str_split($code_base);
- 
-        $number = 0;
-        for ($i = 0; $i < count($code_characters); $i++) {
-                $number = $number * count($characters) + $character_keys[$code_characters[$i]];
-        }
-        return $number; # pokud chceš tak ještě +1
-}
-//Casovy otisk -> Time stamp
-$code_time = time();
-//Informace o tom kolik druhu klicu muze funkce poskytnout
-$code_max_type = 5;
-//Druhy klicu
-if ($default_code_type==1){
-//Sestaveni array tabulky s jednotlivimy znaky
-$characters = array_merge(range('A','Z'), range('a','z'));
-//Jmeno generovaneho klice
-$code_name = '[A-Z,a-z]';
-//Cislo generovaneho klice
-$code_number = 1;
-}
-if ($default_code_type==2){
-//Megaupload.com style
-//Sestaveni array tabulky s jednotlivimy znaky
-$characters = array_merge(range('A','Z'), range('0','9'));
-//Jmeno generovaneho klice
-$code_name = '[A-Z,0-9]';
-//Cislo generovaneho klice
-$code_number = 2;
-}
-if ($default_code_type==3){
-//Sestaveni array tabulky s jednotlivimy znaky
-$characters = array_merge(range('a','z'), range('0','9'));
-//Jmeno generovaneho klice
-$code_name = '[a-z,0-9]';
-//Cislo generovaneho klice
-$code_number = 3;
-}
-if ($default_code_type==4){
-//Sestaveni array tabulky s jednotlivimy znaky
-$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'));
-//Jmeno generovaneho klice
-$code_name = '[A-Z,a-z,0-9]';
-//Cislo generovaneho klice
-$code_number = 4;
-}
-if ($default_code_type>4){
-//Youtube.com style
-//Sestaveni array tabulky s jednotlivimy znaky
-$characters = array_merge(range('A','Z'), range('a','z'), range('0','9'),array('-','_'));
-//Jmeno generovaneho klice
-$code_name = '[A-Z,a-z,0-9,-_]';
-//Cislo generovaneho klice
-$code_number = 5;
-}
-//Vypocet kolik klicu muze generator poskytnout
-$count_characters = count($characters);
-$count_range = pow($count_characters, $default_code_length);
-//Oznaceni konce ve vypoctu klicu
-$character_end = 'Z';
-$character_start = '';
-$array_chars = array_flip($characters);
-//Podminka slouzi pro detekci jestly ma funkce vygenerovat pocatecni ,nahodny nebo nasledujici klic
- if ($default_code==false){
-//Generator nahodneho nebo pocatecniho klice
-for ($n=1;$default_code_length>=$n;$n++){
-if ($code_random){
-//Generace nahodneho klice
-$character_start .= $characters[rand(0,($count_characters-1))];
-}else{
-//Generace pocatecniho klice
-$character_start .= 'A';
-}
-}
-$code_base = $character_start;
-                return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_time'=>$code_time,'code_count'=>code_count($code_base,$array_chars),'code_range'=>$count_range,'code_message'=>'','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-}else{
-//Generace nasledujiciho klice
-    $chars = $characters;
-    $code_array = str_split($default_code);
-    // Starts searching for the next character capable of increasing, or different from Z
-    // Note that initiates the last character to the first
-    for($i = count($code_array)-1;$i>-1;$i--){
-        if($code_array[$i] == $character_end){
-            if($i=='0'){
-                //If equal to Z and is the first character, mental increases the length and zeroes
-                $code_array = array_fill(0,count($code_array) + 1,0);
-$code_base = implode("",$code_array);
-//Podminka hlida generaci spravneho klice, pokud je klic spravne dostanete -> 'code_message'=>'' jinak je vygenerovany klic spatne nebo uz funkce vygenerovala maximalni pocet klicu
-if ($default_code_length==strlen($code_base)){
-        return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_range'=>$count_range,'code_count'=>code_count($code_base,$array_chars),'code_time'=>$code_time,'code_message'=>'','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-                    }elseif($default_code_length<strlen($code_base)){
-                return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_range'=>$count_range,'code_count'=>code_count($code_base,$array_chars),'code_time'=>$code_time,'code_message'=>'is_upper_or_full','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-                    }else{
-                return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_range'=>$count_range,'code_count'=>code_count($code_base,$array_chars),'code_time'=>$code_time,'code_message'=>'is_lower','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-}
-            }else{
-                if($code_array[$i -1] != $character_end){
-                    // If the character is different from previous Z, increment it and resets the current and subsequent
-                    // If the character is above the first, also works because it increases and the other resets
-                    $code_array[$i -1] = $chars[array_search($code_array[$i -1],$chars) + 1];
-                    for($j = $i; $j < count($code_array); $j++){
-                        $code_array[$j] = '0';
-                    }
-$code_base = implode("",$code_array);
-//Podminka hlida generaci spravneho klice, pokud je klic spravne dostanete -> 'code_message'=>'' jinak je vygenerovany klic spatne nebo uz funkce vygenerovala maximalni pocet klicu
-if ($default_code_length==strlen($code_base)){
-        return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_range'=>$count_range,'code_count'=>code_count($code_base,$array_chars),'code_time'=>$code_time,'code_message'=>'','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-                    }elseif($default_code_length<strlen($code_base)){
-                return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_range'=>$count_range,'code_count'=>code_count($code_base,$array_chars),'code_time'=>$code_time,'code_message'=>'is_upper_or_full','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-                    }else{
-                return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_range'=>$count_range,'code_count'=>code_count($code_base,$array_chars),'code_time'=>$code_time,'code_message'=>'is_lower','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-}
-                }
+declare(strict_types=1);
+
+class UniqueKeyGenerator
+{
+    private const TYPE_ALPHA_UPPERLOWER = 1;
+    private const TYPE_ALPHA_UPPER_NUM = 2;
+    private const TYPE_ALPHA_LOWER_NUM = 3;
+    private const TYPE_ALPHA_NUM = 4;
+    private const TYPE_URLSAFE = 5;
+
+    private array $chars;
+    private array $indexMap;
+    private int $length;
+    private int $type;
+    private int $maxType = 5;
+
+    public function __construct(int $length = 1, int $type = self::TYPE_ALPHA_UPPERLOWER)
+    {
+        $this->length = max(1, $length);
+        $this->type = min(max(1, $type), $this->maxType);
+        $this->chars = $this->buildCharset($this->type);
+        $this->indexMap = array_flip($this->chars);
+    }
+
+    private function buildCharset(int $type): array
+    {
+        return match ($type) {
+            self::TYPE_ALPHA_UPPER_NUM => array_merge(range('A', 'Z'), range('0', '9')),
+            self::TYPE_ALPHA_LOWER_NUM => array_merge(range('a', 'z'), range('0', '9')),
+            self::TYPE_ALPHA_NUM => array_merge(range('A', 'Z'), range('a', 'z'), range('0', '9')),
+            self::TYPE_URLSAFE => array_merge(range('A', 'Z'), range('a', 'z'), range('0', '9'), ['-', '_']),
+            default => array_merge(range('A', 'Z'), range('a', 'z')),
+        };
+    }
+
+    /**
+     * Generate a random (or deterministic all-first) code.
+     */
+    public function generateRandom(bool $secure = true, bool $useFirstChar = false): string
+    {
+        $out = '';
+        $max = count($this->chars) - 1;
+        for ($i = 0; $i < $this->length; $i++) {
+            if ($useFirstChar) {
+                $out .= $this->chars[0];
+                continue;
             }
- 
-        }else{
-                // calculate the next character, or increments the current
-                $code_array[$i] = $chars[array_search($code_array[$i],$chars) + 1];
-                if($i == '0'){
-                    // If the first character, meaning others Salo z
-                     // That is, they reset
-                    $novo_array = array_fill(0,count($code_array),0);
-                    $novo_array[0] = $code_array[$i];
-                    $code_array = $novo_array;
-                }
-$code_base = implode("",$code_array);
-//Podminka hlida generaci spravneho klice, pokud je klic spravne dostanete -> 'code_message'=>'' jinak je vygenerovany klic spatne nebo uz funkce vygenerovala maximalni pocet klicu
-if ($default_code_length==strlen($code_base)){
-        return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_range'=>$count_range,'code_count'=>code_count($code_base,$array_chars),'code_time'=>$code_time,'code_message'=>'','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-                    }elseif($default_code_length<strlen($code_base)){
-                return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_range'=>$count_range,'code_count'=>code_count($code_base,$array_chars),'code_time'=>$code_time,'code_message'=>'is_upper_or_full','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-                    }else{
-                return array('code_base'=>$code_base,'code_base_md5'=>md5($code_base),'code_base_sha1'=>sha1($code_base),'code_base64_encode'=>base64_encode($code_base),'code_range'=>$count_range,'code_count'=>code_count($code_base,$array_chars),'code_time'=>$code_time,'code_message'=>'is_lower','code_name'=>$code_name,'code_type'=>$code_number,'code_max_type'=>$code_max_type,'code_length'=>$default_code_length);
-}
+            $idx = $secure ? random_int(0, $max) : mt_rand(0, $max);
+            $out .= $this->chars[$idx];
         }
+        return $out;
+    }
+
+    /**
+     * Generate next code in sequence. Returns associative payload similar to original.
+     * Throws InvalidArgumentException on invalid input.
+     */
+    public function next(string $current): array
+    {
+        $time = time();
+        if ($current === '') {
+            throw new InvalidArgumentException('Current code must be non-empty.');
+        }
+
+        // validate characters
+        $charsCount = count($this->chars);
+        $currentArr = preg_split('//u', $current, -1, PREG_SPLIT_NO_EMPTY);
+        foreach ($currentArr as $ch) {
+            if (!isset($this->indexMap[$ch])) {
+                throw new InvalidArgumentException('Current code contains invalid character: ' . $ch);
+            }
+        }
+
+        // convert to indices
+        $indices = array_map(fn($c) => $this->indexMap[$c], $currentArr);
+
+        // increment with carry
+        $pos = count($indices) - 1;
+        $carry = 1;
+        while ($pos >= 0 && $carry) {
+            $indices[$pos] += $carry;
+            if ($indices[$pos] >= $charsCount) {
+                $indices[$pos] = 0;
+                $carry = 1;
+                $pos--;
+            } else {
+                $carry = 0;
+            }
+        }
+
+        if ($carry === 1) {
+            // overflow: increase length by 1 (consistent with original behaviour)
+            array_unshift($indices, 0);
+        }
+
+        // build code from indices
+        $newChars = array_map(fn($i) => $this->chars[$i], $indices);
+        $codeBase = implode('', $newChars);
+
+        // compute simple base-n count (may overflow native ints for huge lengths)
+        $countNumber = $this->baseNToInteger($indices, $charsCount);
+
+        // prepare payload (single place)
+        return [
+            'code_base' => $codeBase,
+            'code_base_md5' => md5($codeBase),
+            'code_base_sha1' => sha1($codeBase),
+            'code_base64_encode' => base64_encode($codeBase),
+            'code_time' => $time,
+            'code_count' => $countNumber,
+            'code_range' => $this->safePowString($charsCount, $this->length),
+            'code_message' => (strlen($codeBase) > $this->length) ? 'is_upper_or_full' : '',
+            'code_name' => $this->charsetName(),
+            'code_type' => $this->type,
+            'code_max_type' => $this->maxType,
+            'code_length' => $this->length,
+        ];
+    }
+
+    private function charsetName(): string
+    {
+        return match ($this->type) {
+            self::TYPE_ALPHA_UPPER_NUM => '[A-Z,0-9]',
+            self::TYPE_ALPHA_LOWER_NUM => '[a-z,0-9]',
+            self::TYPE_ALPHA_NUM => '[A-Z,a-z,0-9]',
+            self::TYPE_URLSAFE => '[A-Z,a-z,0-9,-_]',
+            default => '[A-Z,a-z]',
+        };
+    }
+
+    /**
+     * Convert base-n digits to integer (may return string if large).
+     */
+    private function baseNToInteger(array $digits, int $base)
+    {
+        // prefer BCMath for exact big integers when available
+        if (function_exists('bcadd')) {
+            $acc = '0';
+            foreach ($digits as $d) {
+                $acc = bcmul($acc, (string)$base);
+                $acc = bcadd($acc, (string)$d);
+            }
+            return $acc;
+        }
+
+        // fallback to native integer (may overflow)
+        $acc = 0;
+        foreach ($digits as $d) {
+            $acc = $acc * $base + $d;
+        }
+        return $acc;
+    }
+
+    private function safePowString(int $base, int $exp): string
+    {
+        if (function_exists('bcpow')) {
+            return bcpow((string)$base, (string)$exp);
+        }
+        // fallback (may be float and imprecise for large exp)
+        return (string) pow($base, $exp);
     }
 }
- 
-}
+
+// Example usage:
+$g = new UniqueKeyGenerator(8, 5);
+$random = $g->generateRandom();
+$nextInfo = $g->next('aZ5sTp53x');
+var_dump($random, $nextInfo);
+
 ?>
