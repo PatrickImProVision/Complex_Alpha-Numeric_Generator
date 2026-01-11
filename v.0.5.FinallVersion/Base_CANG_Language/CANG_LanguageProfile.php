@@ -135,18 +135,4 @@ class CANG_LanguageProfile
         return $definitions;
     }
 }
-
-/*
-Example: How To Use
-
-Insert This To Include LanguageChar Configuration:
-$CANG_LanguageChar = require __DIR__ . '/CANG_Config/CANG_LanguageChar.php';
-
-Then Load The LanguageDefinition:
-$CANG_LanguageProfile = CANG_LanguageProfile::BuildAll($CANG_LanguageChar['LanguageChar']);
-
-You Can Print The OutPut And Continue To Configure Your FrameWork:
-print_r($CANG_LanguageProfile);
-
-*/
 ?>

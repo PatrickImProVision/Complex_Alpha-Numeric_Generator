@@ -29,15 +29,4 @@ return [
     ],
 
 ];
-
-/*
-Example: How To Use
-
-$LanguageCharFoundation = require __DIR__ . '/CANG_Config/CANG_LanguageChar.php';
-
-Then Insert This Code Into Process:
-$LanguageChar['LanguageChar']
-It Will Help You To Match The Configuration InSide The Array.
-*/
-
 ?>
