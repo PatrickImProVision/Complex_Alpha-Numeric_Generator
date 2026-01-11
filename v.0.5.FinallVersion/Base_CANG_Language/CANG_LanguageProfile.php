@@ -1,6 +1,6 @@
 <?php
 
-class CANG_LanguageDefinition
+class CANG_LanguageProfile
 {
     protected int $id;
     protected string $name;
@@ -66,7 +66,8 @@ class CANG_LanguageDefinition
     }
 
     // -----------------------------
-    // Factory: Build All Definitions
+    // Factory: Build All Definitions: Edit The Profile To Add Language Definition
+    // Start With Number 1 To Avoid Conflict With Null,False
     // -----------------------------
 
     public static function BuildAll(array $LanguageChar): array
@@ -139,13 +140,13 @@ class CANG_LanguageDefinition
 Example: How To Use
 
 Insert This To Include LanguageChar Configuration:
-$CANG_LanguageCharFoundation = require __DIR__ . '/CANG_Config/CANG_LanguageCharFoundation.php';
+$CANG_LanguageChar = require __DIR__ . '/CANG_Config/CANG_LanguageChar.php';
 
 Then Load The LanguageDefinition:
-$CANG_LanguageDefinition = CANG_LanguageDefinition::BuildAll($CANG_LanguageCharFoundation['LanguageChar']);
+$CANG_LanguageProfile = CANG_LanguageProfile::BuildAll($CANG_LanguageChar['LanguageChar']);
 
 You Can Print The OutPut And Continue To Configure Your FrameWork:
-print_r($CANG_LanguageDefinition);
+print_r($CANG_LanguageProfile);
 
 */
 ?>

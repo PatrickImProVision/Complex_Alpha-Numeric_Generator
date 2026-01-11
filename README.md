@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Below is a polished, reference‑quality **README.md** you can drop directly into a GitHub repository.  
 It’s structured, logical, developer‑friendly, and explains the full CANG language‑selection system with clarity and purpose.
 
@@ -205,6 +204,3 @@ This design keeps CANG future‑proof and easy to evolve.
 
 CANG provides a clean, structured, and extensible way to generate strings with predictable rules.  
 Its language‑based architecture makes it ideal for developers who value clarity, control, and compatibility across systems.
-=======
-# Write Down Details Of The CANG
->>>>>>> a4756c88db9b3c72442c0e07d07ca7575a07c954

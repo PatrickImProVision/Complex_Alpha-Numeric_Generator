@@ -33,10 +33,10 @@ return [
 /*
 Example: How To Use
 
-$LanguageCharFoundation = require __DIR__ . '/CANG_Config/CANG_LanguageCharFoundation.php';
+$LanguageCharFoundation = require __DIR__ . '/CANG_Config/CANG_LanguageChar.php';
 
 Then Insert This Code Into Process:
-$LanguageCharFoundation['LanguageChar']
+$LanguageChar['LanguageChar']
 It Will Help You To Match The Configuration InSide The Array.
 */
 
