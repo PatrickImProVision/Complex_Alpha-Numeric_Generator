@@ -1,6 +1,3 @@
-Below is a polished, reference‑quality **README.md** you can drop directly into a GitHub repository.  
-It’s structured, logical, developer‑friendly, and explains the full CANG language‑selection system with clarity and purpose.
-
 ---
 
 # **CANG — Configurable Alphanumeric Generator**
@@ -40,7 +37,7 @@ Each *Language* is defined by:
 | 2 | `Alphabet_Lower` | `[a-z]` | Alphabetical → Simple: Small letters |
 | 3 | `Alphabet_Mix` | `[A-Z,a-z]` | Alphabetical → Mix: Capital and Small letters |
 | 4 | `Numeric` | `[0-9]` | Numerical → Simple |
-| 5 | `Alphabet_Upper_Num` | `[A-Z,0-9]` | Alphabetical + Numerical → Simple: Capital letters (Megaupload‑style) |
+| 5 | `Alphabet_Upper_Num` | `[A-Z,0-9]` | Alphabetical + Numerical → Simple: Capital letters (Microsoft/Megaupload‑style) |
 | 6 | `Alphabet_Lower_Num` | `[a-z,0-9]` | Alphabetical + Numerical → Simple: Small letters |
 | 7 | `Alphabet_Mix_Num` | `[A-Z,a-z,0-9]` | Alphabetical + Numerical → Mix: Capital and Small letters |
 | 8 | `Alphabet_Mix_Num_SpecialShort` | `[A-Z,a-z,0-9,-_]` | Mix + Short Special chars (YouTube‑style) |
@@ -92,7 +89,7 @@ $CANG_Description = [
     2 => 'Alphabetical -> Simple: Small letters',
     3 => 'Alphabetical -> Mix: Capital and Small letters',
     4 => 'Numerical -> Simple',
-    5 => 'Alphabetical And Numerical -> Simple: Capital letters (Megaupload.com)',
+    5 => 'Alphabetical And Numerical -> Simple: Capital letters (Microsoft/Megaupload.com)',
     6 => 'Alphabetical and Numerical -> Simple: Small letters',
     7 => 'Alphabetical and Numerical -> Mix: Capital and Small letters',
     8 => 'Alphabetical and Numerical -> Mix: Capital/Small letters plus Short Special chars (YouTube.com)',

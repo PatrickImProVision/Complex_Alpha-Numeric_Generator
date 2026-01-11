@@ -4,5 +4,9 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.formatOnSave": true,
+		"files.autoSave": "afterDelay",
+		"editor.formatOnPaste": true
+	}
 }
