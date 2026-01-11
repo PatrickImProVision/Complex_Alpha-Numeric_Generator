@@ -1,3 +1,6 @@
+Below is a polished, reference‑quality **README.md** you can drop directly into a GitHub repository.  
+It’s structured, logical, developer‑friendly, and explains the full CANG language‑selection system with clarity and purpose.
+
 ---
 
 # **CANG — Configurable Alphanumeric Generator**
