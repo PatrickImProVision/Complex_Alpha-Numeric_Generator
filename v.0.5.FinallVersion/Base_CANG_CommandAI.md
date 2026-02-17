@@ -1,140 +1,193 @@
-Create PHP Code:
 
-Name: CANG_LanguageCharFoundation
+---
+Project Name: Complex Alpha Numeric Generator (CANG)
 
-Fundamental Config File:
+Project Description: 'The Complex Alpha Numeric Generator (CANG) is a PHP‑based utility designed to produce highly customizable alphanumeric strings for use in authentication systems, token creation, unique identifiers, and data‑randomization workflows. Built for developers who need both flexibility and reliability, CANG supports layered configuration options including character‑set selection, entropy tuning, pattern enforcement, and optional cryptographic strengthening. CANG’s architecture emphasizes modularity and clean integration. It can operate as a standalone function, a reusable class, or a plug‑in component within larger PHP applications. Its deterministic configuration model ensures repeatable behavior when needed, while still offering strong randomness for security‑sensitive contexts. Whether you’re generating session keys, invitation codes, randomized filenames, or structured alphanumeric sequences, CANG provides a robust, developer‑friendly foundation that adapts to a wide range of project requirements.'
 
-Set The Fundamental Language Characters:
-LanguageChar : Upper -> range('A','Z')
-LanguageChar : Lower -> range('a','z')
-LanguageChar : Numeric -> range('0','9')
-LanguageChar : ShortSpecial -> str_split('_-')
-LanguageChar : FullSpecial -> str_split('#$%&+-@_')
+Project Type: PHP
 
-Create PHP Class:
+Project Schema: Universal
 
-Name: CANG_LanguageCharClass
+Project Definition:
 
-Set The Basic Language Name:
-LanguageName : Alphabet_Upper
-LanguageName : Alphabet_Lower
-LanguageName : Alphabet_Mix
-LanguageName : Numeric
-LanguageName : Alphabet_Upper_Num
-LanguageName : Alphabet_Lower_Num
-LanguageName : Alphabet_Mix_Num
-LanguageName : Alphabet_Mix_Num_SpecialShort
-LanguageName : Alphabet_Mix_Num_SpecialFull
+The Fundamental Language Symbols:
+Language_Symbol : Upper -> range('A','Z')
+Language_Symbol : Lower -> range('a','z')
+Language_Symbol : Numeric -> range('0','9')
+Language_Symbol : CharShort -> str_split('_-')
+Language_Symbol : CharLong -> str_split('#$%&+-@')
 
-Set The Basic Language Type:
-LanguageType : '[A-Z]'
-LanguageType : '[a-z]'
-LanguageType : '[A-Z,a-z]'
-LanguageType : '[0-9]'
-LanguageType : '[A-Z,0-9]'
-LanguageType : '[a-z,0-9]'
-LanguageType : '[A-Z,a-z,0-9]'
-LanguageType : '[A-Z,a-z,0-9,-_]'
-LanguageType : '[A-Z,a-z,0-9,-_]'
+The Basic Language Name:
+Language_Name : Alphabet_Upper
+Language_Name : Alphabet_Lower
+Language_Name : Alphabet_Mix
+Language_Name : Numeric
+Language_Name : Alphabet_Upper_Num
+Language_Name : Alphabet_Lower_Num
+Language_Name : Alphabet_Mix_Num
+Language_Name : Alphabet_Mix_Num_CharShort
+Language_Name : Alphabet_Mix_Num_CharLong
+Language_Name : Alphabet_Mix_Num_CharMix
 
-Set The Basic Language Description:
-LanguageDescription : 'Alphabetical -> Simple: Capital letters'
-LanguageDescription : 'Alphabetical -> Simple: Small letters'
-LanguageDescription : 'Alphabetical -> Mix: Capital and Small letters'
-LanguageDescription : 'Numerical -> Simple'
-LanguageDescription : 'Alphabetical And Numerical -> Simple: Capital letters (Megaupload.com)'
-LanguageDescription : 'Alphabetical and Numerical -> Simple: Small letters'
-LanguageDescription : 'Alphabetical and Numerical -> Mix: Capital and Small letters'
-LanguageDescription : 'Alphabetical and Numerical -> Mix: Capital/Small letters plus Short Special chars (YouTube.com)'
-LanguageDescription : 'Alphabetical and Numerical -> Mix: Capital/Small letters plus Full Special chars (Safe Password)'
+The Basic Language Type:
+Language_Type : '[A-Z]'
+Language_Type : '[a-z]'
+Language_Type : '[A-Z]', '[a-z]'
+Language_Type : '[0-9]'
+Language_Type : '[A-Z]', '[0-9]'
+Language_Type : '[a-z]', '[0-9]'
+Language_Type : '[A-Z]', '[a-z]', '[0-9]'
+Language_Type : '[A-Z]', '[a-z]', '[0-9]', '[-_]'
+Language_Type : '[A-Z]', '[a-z]', '[0-9]', '[#$%+-@]'
+Language_Type : '[A-Z]', '[a-z]', '[0-9]', '[-_]', '[#$%+-@]'
 
-Set The Basic Language Range:
-LanguageRange : LanguageChar[Upper]
-LanguageRange : LanguageChar[Lower]
-LanguageRange : LanguageChar[Upper], LanguageChar[Lower]
-LanguageRange : LanguageChar[Numeric]
-LanguageRange : LanguageChar[Upper], LanguageChar[Numeric]
-LanguageRange : LanguageChar[Lower], LanguageChar[Numeric]
-LanguageRange : LanguageChar[Upper], LanguageChar[Lower], LanguageChar[Numeric]
-LanguageRange : LanguageChar[Upper], LanguageChar[Lower], LanguageChar[Numeric], LanguageChar[ShortSpecial]
-LanguageRange : LanguageChar[Upper], LanguageChar[Lower], LanguageChar[Numeric], LanguageChar[FullSpecial]
+The Basic Language Description:
+Language_Description : 'Alphabetical -> Simple: Capital Letters'
+Language_Description : 'Alphabetical -> Simple: Small Letters'
+Language_Description : 'Alphabetical -> Mix: Capital And Small Letters'
+Language_Description : 'Numerical -> Simple'
+Language_Description : 'Alphabetical And Numerical -> Simple: Capital Letters (Megaupload.com)'
+Language_Description : 'Alphabetical And Numerical -> Simple: Small Letters'
+Language_Description : 'Alphabetical And Numerical -> Mix: Capital And Small Letters'
+Language_Description : 'Alphabetical And Numerical -> Mix: Capital/Small Letters Plus Short Special Chars (YouTube.com)'
+Language_Description : 'Alphabetical And Numerical -> Mix: Capital/Small Letters Plus Long Special Chars (Safe Password)'
+Language_Description : 'Alphabetical And Numerical -> Mix: Capital/Small Letters Plus Full Special Chars (Safe Password)'
 
-Set The Basic Language Id:
-LanguageId : 1
-LanguageId : 2
-LanguageId : 3
-LanguageId : 4
-LanguageId : 5
-LanguageId : 6
-LanguageId : 7
-LanguageId : 8
-LanguageId : 9
+The Basic Language Range:
+Language_Range : Language_Symbol[Upper]
+Language_Range : Language_Symbol[Lower]
+Language_Range : Language_Symbol[Upper], Language_Symbol[Lower]
+Language_Range : Language_Symbol[Numeric]
+Language_Range : Language_Symbol[Upper], Language_Symbol[Numeric]
+Language_Range : Language_Symbol[Lower], Language_Symbol[Numeric]
+Language_Range : Language_Symbol[Upper], Language_Symbol[Lower], Language_Symbol[Numeric]
+Language_Range : Language_Symbol[Upper], Language_Symbol[Lower], Language_Symbol[Numeric], Language_Symbol[CharShort]
+Language_Range : Language_Symbol[Upper], Language_Symbol[Lower], Language_Symbol[Numeric], Language_Symbol[CharLong]
+Language_Range : Language_Symbol[Upper], Language_Symbol[Lower], Language_Symbol[Numeric], Language_Symbol[CharShort], Language_Symbol[CharLong]
 
-Set The Basic Language Order:
-LanguageOrder : LanguageId, LanguageName, LanguageType, LanguageDescription, LanguageRange
+The Basic Language Id:
+Language_Id : 0
+Language_Id : 1
+Language_Id : 2
+Language_Id : 3
+Language_Id : 4
+Language_Id : 5
+Language_Id : 6
+Language_Id : 7
+Language_Id : 8
+Language_Id : 9
 
-Set The Basic Language Definition:
-LanguageDefinition -> LanguageOrder
+---
+ToDo List:
+Config,
+Language,
+ProFile,
+CANG
 
-Name: Complex Alpha Numeric Generator (CANG)
+---
+The Design Of The Files: Config, Language, ProFile, CANG
 
-Create PHP CANG Class:
+File Name: CANG_Config
+File Description: It Is A Complex Array With Architecture Of Fundamental Configuration That Is Loaded InTo Language Class.
 
-Able To Select Language:
-LanguageDefinition
+File Name: CANG_Language
+File Description: It Is A Complex Language Class That Load The Config Of The Language InTo Sortable Order That Is Loaded InTo ProFile.
+
+Set The Basic Language_Order(Language_Id, Language_Name, Language_Type, Language_Description) -> Language_Range
+
+File Name: CANG_ProFile
+File Description:It Is A Complex Language ProFile Class That Load The Language Class InTo SelectAble Order That Is Loaded InTo CANG Core.
+
+The ProFile Must Be Able To Select The Symbol, Type, Range Of The Language And Order Them Accoding To Selection.
+The Selection Of Language Is Based On Language_Id To Set Default_Language.
+The Selection Of Language_Range Must Be Able To Language Rotate As Developer/User Decide To Sort By Canonical Order Language_Range, Language_Type
+Example:
+
+Language_Range() -> If More Than One The Order Does Work
+
+Default_Language -> Language_Id
+Default_Order -> Language_Range(Upper, Lower, Numeric, CharShort, CharLong)
+
+Default_Language -> Language_Id
+Default_Order -> Language_Range(CharLong, CharShort, Numeric, Lower, Upper)
+
+
+File Name: CANG_Core
+File Description: It Is A Complex CANG Class That Load The ProFile Class InTo The Fields To Select Mode And Lenght Of The Generated Code For Next Developer/User Process.
 
 Able To Change Length:
 Minimum Length = 8
 
 Able To Select Generation Mode:
-GenerateMode : Beginning, Current, Next, Previous, End, Random, Id
+GenerateMode : Beginning, Previous, Current, Next, End, Random, Id
 
 Example Mode Selection:
-Mode : Beginning(:NoInPut:)
-Mode : Current(:InPutString:)
-Mode : Next(:InPutString:)
-Mode : Previous(:InPutString:)
-Mode : End(:NoInPut:)
-Mode : Random(:NoInPut:)
-Mode : Id(:InPutNumber:)
+Mode : Beginning(:NoInPut:) -> Id(:InPutNumber:)
+Mode : Previous(:InPutString:) -> Id(:InPutNumber:)
+Mode : Current(:InPutString:) -> Id(:InPutNumber:)
+Mode : Next(:InPutString:) -> Id(:InPutNumber:)
+Mode : End(:NoInPut:) -> Id(:InPutNumber:)
+Mode : Random(:NoInPut:) -> Id(:InPutNumber:)
+Mode : Id(:InPutNumber:) -> Current(:InPutString:)
 
-Able To Read Position:
+Able To Read Position: Id(:InPutNumber:)
 Example:
-AAAAAAAA = 0
-AAAAAAAB = 1
-AAAAAAAC = 2
+ 'Code Generation' / 'Program Friendly' / 'Developer/User Friendly'
+AAAAAAAA = 0 -> 1
+AAAAAAAB = 1 -> 2
+AAAAAAAC = 2 -> 3
 
-ReadMe:
-Write Nice Referencial ReadMe MarkDown With Logic And Development For GitHub About The CANG That Includes Language Char Followed By Language Definition And Language Selector To Gain Settings For CANG And Generate OutPut String That Is Compatible According To
-Language Name:
-1 => 'Alphabet_Upper',
-2 => 'Alphabet_Lower',
-3 => 'Alphabet_Mix',
-4 => 'Numeric',
-5 => 'Alphabet_Upper_Num',
-6 => 'Alphabet_Lower_Num',
-7 => 'Alphabet_Mix_Num',
-8 => 'Alphabet_Mix_Num_SpecialShort',
-9 => 'Alphabet_Mix_Num_SpecialFull'
 
-Language Type:
-1 => '[A-Z]',
-2 => '[a-z]',
-3 => '[A-Z,a-z]',
-4 => '[0-9]',
-5 => '[A-Z,0-9]',
-6 => '[a-z,0-9]',
-7 => '[A-Z,a-z,0-9]',
-8 => '[A-Z,a-z,0-9,-_]',
-9 => '[A-Z,a-z,0-9,-_]'
-
-Language Description:
-1 => 'Alphabetical -> Simple: Capital letters',
-2 => 'Alphabetical -> Simple: Small letters',
-3 => 'Alphabetical -> Mix: Capital and Small letters',
-4 => 'Numerical -> Simple',
-5 => 'Alphabetical And Numerical -> Simple: Capital letters (Megaupload.com)',
-6 => 'Alphabetical and Numerical -> Simple: Small letters',
-7 => 'Alphabetical and Numerical -> Mix: Capital and Small letters',
-8 => 'Alphabetical and Numerical -> Mix: Capital/Small letters plus Short Special chars (YouTube.com)',
-9 => 'Alphabetical and Numerical -> Mix: Capital/Small letters plus Full Special chars (Safe Password)'
+Code Array: Old Schema
+	public function CodeArray(){
+		$code_base = implode($this->code_char_base);
+	if($this->default_code_length==strlen($code_base)){
+			return array(
+					'code_base'=>$code_base,
+					'code_base_md5'=>md5($code_base),
+					'code_base_sha1'=>sha1($code_base),
+					'code_base64_encode'=>base64_encode($code_base),
+					'code_max_number'=>$this->CodeType['code_max_number'],
+					'code_pos_num'=>$this->code_pos_num,
+					'code_time'=>$this->CodeType['code_generated_time'],
+					'code_message'=>'is_acurrate',
+					'code_name'=>$this->CodeType['code_name'],
+					'code_description'=>$this->CodeType['code_description'],
+					'code_type'=>$this->default_code_type,
+					'code_max_type'=>$this->code_max_type,
+					'code_length'=>$this->default_code_length
+					);
+		}elseif($this->default_code_length<strlen($code_base)){
+			return array(
+						'code_base'=>$code_base,
+						'code_base_md5'=>md5($code_base),
+						'code_base_sha1'=>sha1($code_base),
+						'code_base64_encode'=>base64_encode($code_base),
+						'code_max_number'=>$this->CodeType['code_max_number'],
+						'code_pos_num'=>$this->code_pos_num,
+						'code_time'=>$this->CodeType['code_generated_time'],
+						'code_message'=>'is_upper_or_full',
+						'code_name'=>$this->CodeType['code_name'],
+						'code_description'=>$this->CodeType['code_description'],
+						'code_type'=>$this->default_code_type,
+						'code_max_type'=>$this->code_max_type,
+						'code_length'=>$this->default_code_length
+						);
+		}else{
+			return array(
+						'code_base'=>$code_base,
+						'code_base_md5'=>md5($code_base),
+						'code_base_sha1'=>sha1($code_base),
+						'code_base64_encode'=>base64_encode($code_base),
+						'code_max_number'=>$this->CodeType['code_max_number'],
+						'code_pos_num'=>$this->code_pos_num,
+						'code_time'=>$this->CodeType['code_generated_time'],
+						'code_message'=>'is_lower',
+						'code_name'=>$this->CodeType['code_name'],
+						'code_description'=>$this->CodeType['code_description'],
+						'code_type'=>$this->default_code_type,
+						'code_max_type'=>$this->code_max_type,
+						'code_length'=>$this->default_code_length
+						);
+		}
+	}
