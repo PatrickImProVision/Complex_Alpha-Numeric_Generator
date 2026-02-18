@@ -138,6 +138,49 @@ final class CANG_DataBase
     }
 
     /**
+     * Validate database existence check input/source and return check contract.
+     *
+     * Contract:
+     * - Status: CHECK_ERROR | CHECK_SUCCESS
+     * - Reason: INVALID_INPUT | VALID_INPUT | SOURCE_FAILED
+     * - Flow: FLOW_EXISTENCE_CHECK_INPUT_FAILED | FLOW_EXISTENCE_CHECK_INPUT_PASSED | FLOW_EXISTENCE_CHECK_SOURCE_FAILED
+     *
+     * @param array<string, mixed> $Where
+     * @return array<string, mixed>
+     */
+    public function ExistenceCheck(string $Table, array $Where): array
+    {
+        if (trim($Table) === '' || $Where === []) {
+            return [
+                'Status' => 'CHECK_ERROR',
+                'Reason' => 'INVALID_INPUT',
+                'Flow' => 'FLOW_EXISTENCE_CHECK_INPUT_FAILED',
+                'Exists' => false,
+            ];
+        }
+
+        try {
+            $Rows = $this->Select($Table, $Where, '*', 1);
+            $Exists = count($Rows) > 0;
+
+            return [
+                'Status' => 'CHECK_SUCCESS',
+                'Reason' => 'VALID_INPUT',
+                'Flow' => 'FLOW_EXISTENCE_CHECK_INPUT_PASSED',
+                'Exists' => $Exists,
+            ];
+        } catch (\Throwable $Throwable) {
+            return [
+                'Status' => 'CHECK_ERROR',
+                'Reason' => 'SOURCE_FAILED',
+                'Flow' => 'FLOW_EXISTENCE_CHECK_SOURCE_FAILED',
+                'Exists' => false,
+                'Error_Message' => $Throwable->getMessage(),
+            ];
+        }
+    }
+
+    /**
      * @param array<string, mixed> $Where
      * @return array{0:string,1:array<string,mixed>}
      */
@@ -184,4 +227,7 @@ $Changed = $DB->Update('cang_codes', ['code' => 'ZX98YU76'], ['id' => $New_Id]);
 
 // 6) Delete
 $Removed = $DB->Delete('cang_codes', ['id' => $New_Id]);
+
+// 7) Existence check contract (for CANG_Driver generated code verification)
+$Check = $DB->ExistenceCheck('cang_codes', ['code' => 'AB12CD34']);
 */
